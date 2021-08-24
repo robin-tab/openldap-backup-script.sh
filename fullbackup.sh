@@ -16,7 +16,7 @@ DAYOFWEEK=$(date +%u)
 
 /bin/mkdir $REMOTEDIR > /dev/null 2>&1
 
-/bin/mount -t nfs 10.10.0.229:/volume1/serverbackups $REMOTEDIR  > /dev/null 2>&1   
+/bin/mount -t nfs IPADDRESS:/volume1/serverbackups $REMOTEDIR  > /dev/null 2>&1   
 
 /bin/tar -zcvpf $LOCALDIR/$FILENAME --directory=/ --exclude=proc --exclude=*tar --exclude=*gz --exclude=media --exclude=sys --exclude=dev/pts --exclude=backups --exclude=mnt . > $FI
 LELOG
@@ -29,7 +29,7 @@ if [ "$DAYOFWEEK" == 4 ];  then
 
 NUMBERFILES=$(/usr/bin/wc $LOG | awk '{print $1}')
 
-mail -s "$NUMBERFILES Linux server backups for $DATE" robin@theappbusiness.com < $LOG ;
+mail -s "$NUMBERFILES Linux server backups for $DATE" NAME@DOMAIN.COM < $LOG ;
 
 else : ; 
 
